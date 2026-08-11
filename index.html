@@ -207,20 +207,19 @@
     padding: 6px 22px;
   }
   .brief-item{
-    padding: 16px 0;
+    padding: 14px 0;
     border-bottom: 1px solid var(--border);
-    display:grid;
-    grid-template-columns: 118px 1fr;
-    gap: 16px;
+    display:flex;
+    align-items: flex-start;
+    gap: 12px;
   }
   .brief-item:last-child{ border-bottom: none; }
-  .brief-item .cat{
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .brief-item .bullet-mark{
+    flex: none;
     color: var(--gold);
-    font-weight: 600;
-    padding-top: 2px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    padding-top: 1px;
   }
   .brief-item p{
     margin: 0;
@@ -228,10 +227,6 @@
     color: var(--text);
   }
   .brief-item p b, .brief-item p strong{ color: var(--text); }
-
-  @media (max-width: 560px){
-    .brief-item{ grid-template-columns: 1fr; gap: 4px; }
-  }
 
   /* ---------- Outlook ---------- */
   .outlook{
@@ -455,11 +450,11 @@
     { "level": "Resistance 2", "price": 4500.00, "note": "Psychological round number, next major resistance" }
   ],
   "bullets": [
-    { "category": "Geopolitics", "text": "Gold touched a fresh two-month intraday high near $4,410 before easing on profit-taking; the Iran-related risk premium built up since early August has not fully unwound." },
-    { "category": "Fed Policy", "text": "Traders are squaring positions ahead of Wednesday's US CPI print, the next major catalyst for the rate path, after last week's weak jobs report pushed near-term cut odds close to 100%." },
-    { "category": "Dollar & Rates", "text": "The dollar softened modestly intraday as markets positioned for CPI, keeping real yields near recent lows and providing an underlying floor for bullion even as spot slipped from session highs." },
-    { "category": "Flows", "text": "Global gold ETF holdings kept building, tracking toward the fastest three-week accumulation pace since April, though still below February's record of roughly 4,176 tonnes." },
-    { "category": "Central Banks", "text": "Official-sector demand stayed firm following Q2's record 289-tonne buying pace, a structural bid that continues to cushion intraday pullbacks." }
+    "Gold touched a fresh two-month intraday high near $4,410 before easing on profit-taking; the Iran-related risk premium built up since early August has not fully unwound.",
+    "Traders are squaring positions ahead of Wednesday's US CPI print, the next major catalyst for the rate path, after last week's weak jobs report pushed near-term cut odds close to 100%.",
+    "The dollar softened modestly intraday as markets positioned for CPI, keeping real yields near recent lows and providing an underlying floor for bullion even as spot slipped from session highs.",
+    "Global gold ETF holdings kept building, tracking toward the fastest three-week accumulation pace since April, though still below February's record of roughly 4,176 tonnes.",
+    "Official-sector demand stayed firm following Q2's record 289-tonne buying pace, a structural bid that continues to cushion intraday pullbacks."
   ],
   "outlook": {
     "bias": "neutral",
@@ -557,18 +552,19 @@
     document.getElementById('range-start').textContent = labels.start || '';
     document.getElementById('range-end').textContent = labels.end || '';
 
-    // Briefing bullets
+    // Briefing bullets (flat list, no categories — reads cleanly when copy-pasted into an email)
     var briefingEl = document.getElementById('briefing-list');
     briefingEl.innerHTML = '';
     (data.bullets || []).slice(0, 5).forEach(function(b){
       var row = document.createElement('div');
       row.className = 'brief-item';
-      var cat = document.createElement('div');
-      cat.className = 'cat';
-      cat.textContent = b.category || '';
+      var mark = document.createElement('span');
+      mark.className = 'bullet-mark';
+      mark.textContent = '•';
+      mark.setAttribute('aria-hidden', 'true');
       var p = document.createElement('p');
-      p.textContent = b.text || '';
-      row.appendChild(cat);
+      p.textContent = typeof b === 'string' ? b : (b.text || '');
+      row.appendChild(mark);
       row.appendChild(p);
       briefingEl.appendChild(row);
     });

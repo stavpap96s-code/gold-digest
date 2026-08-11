@@ -1,6 +1,6 @@
 # Gold Digest
 
-A static, single-file HTML briefing on gold (XAU/USD) — spot price, weekly trend, key levels, and a 3–5 bullet "what moved gold this week" section. Styled for a financier audience (dark trading-desk aesthetic with a light-mode fallback).
+A static, single-file HTML briefing on gold (XAU/USD) — spot price, weekly trend, key levels, and a 5-bullet "what moved gold this week" section. Styled for a financier audience (dark trading-desk aesthetic with a light-mode fallback).
 
 Open [index.html](index.html) directly in a browser — no build step, no server, no dependencies.
 
@@ -32,12 +32,18 @@ All dynamic content lives in one place: the `<script id="digest-data" type="appl
     // populate the stat-strip tiles, all entries populate the table
   ],
   "bullets": [
-    // 3-5 entries; rendered top to bottom, extras beyond 5 are ignored
-    { "category": "Geopolitics", "text": "..." },
-    { "category": "Fed Policy", "text": "..." },
-    { "category": "Dollar & Rates", "text": "..." },
-    { "category": "Flows", "text": "..." },
-    { "category": "Central Banks", "text": "..." }
+    // exactly 5 plain-text strings, rendered top to bottom as a single flat list
+    // (no category labels/columns) so the section can be selected and pasted
+    // straight into an email and still read as a clean bulleted list.
+    // Each bullet should assess a driver of the gold price this week —
+    // draw freely from macro/Fed policy, the dollar & real yields, geopolitics,
+    // ETF/positioning flows, central-bank buying, etc. — mixed together in
+    // whatever order best reflects what actually moved price, not grouped by topic.
+    "...",
+    "...",
+    "...",
+    "...",
+    "..."
   ],
   "outlook": {
     "bias": "neutral",   // "bullish" | "bearish" | "neutral"
@@ -51,7 +57,7 @@ All dynamic content lives in one place: the `<script id="digest-data" type="appl
 
 ### Updating it (for the automated routine)
 
-1. Gather the day's data: spot price, day/week deltas, week high/low, YTD %, a ~7-point daily-close series for the sparkline, current support/resistance levels, 3–5 news/geopolitics/flow bullets, a short outlook, and source links.
+1. Gather the day's data: spot price, day/week deltas, week high/low, YTD %, a ~7-point daily-close series for the sparkline, current support/resistance levels, exactly 5 plain-text bullets assessing what's driving the gold price this week (mixed across macro, Fed policy, the dollar & rates, geopolitics, flows, central-bank buying, etc. — not grouped by category), a short outlook, and source links.
 2. Replace the entire contents of the `<script id="digest-data" type="application/json">` block in `index.html` with the new JSON payload.
 3. Set `updated_at` to the current UTC timestamp.
 4. Commit and push. If hosting on GitHub Pages / Netlify / Vercel from this repo, the push alone republishes the site.
