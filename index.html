@@ -4,419 +4,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gold Digest — XAU/USD Weekly Briefing</title>
-<meta name="description" content="Daily-updated weekly briefing on gold (XAU/USD): price, trend, and the drivers that matter.">
+<meta name="description" content="Bilingual (English / Greek) weekly briefing on gold (XAU/USD): price, trend, key levels and the drivers that matter. Built to copy straight into an email.">
 <style>
-  :root{
-    --bg: #0b0e14;
-    --bg-panel: #11151f;
-    --bg-panel-2: #151a26;
-    --border: #262c3a;
-    --text: #e8e6df;
-    --text-dim: #9aa1b1;
-    --text-faint: #6b7284;
-    --gold: #cfa15e;
-    --gold-bright: #e8c589;
-    --green: #4caf7d;
-    --red: #d0685a;
-    --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
-    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif;
-    --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-  }
-  @media (prefers-color-scheme: light){
-    :root{
-      --bg: #f4f2ec;
-      --bg-panel: #ffffff;
-      --bg-panel-2: #faf8f3;
-      --border: #ddd7c8;
-      --text: #1c1d1f;
-      --text-dim: #55575e;
-      --text-faint: #86888f;
-      --gold: #93662a;
-      --gold-bright: #7a541f;
-      --green: #1f7a4d;
-      --red: #b2402f;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg: #0b0e14; --bg-panel: #11151f; --bg-panel-2: #151a26; --border: #262c3a;
-    --text: #e8e6df; --text-dim: #9aa1b1; --text-faint: #6b7284;
-    --gold: #cfa15e; --gold-bright: #e8c589; --green: #4caf7d; --red: #d0685a;
-  }
-  :root[data-theme="light"]{
-    --bg: #f4f2ec; --bg-panel: #ffffff; --bg-panel-2: #faf8f3; --border: #ddd7c8;
-    --text: #1c1d1f; --text-dim: #55575e; --text-faint: #86888f;
-    --gold: #93662a; --gold-bright: #7a541f; --green: #1f7a4d; --red: #b2402f;
-  }
-
+  /*
+    Page chrome only. Everything inside #digest is rendered with inline
+    styles and simple tables so it survives copy-paste into Gmail, Outlook
+    and Apple Mail unchanged. Keep layout rules out of this stylesheet.
+  */
   *{ box-sizing: border-box; }
-  html,body{ margin:0; padding:0; }
+  html, body{ margin: 0; padding: 0; }
   body{
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
+    background: #f4f2ec;
+    color: #1c1d1f;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
   }
-  .wrap{
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
+  .page{ max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+  .toolbar, .section-tools{ -webkit-user-select: none; user-select: none; }
+  .toolbar{
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 10px 16px; margin-bottom: 16px;
   }
-
-  /* ---------- Masthead ---------- */
-  header.masthead{
-    border-bottom: 2px solid var(--gold);
-    padding-bottom: 18px;
-    margin-bottom: 28px;
-    display:flex;
-    align-items:flex-end;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
+  .toolbar p{ margin: 0; font-size: 13px; color: #4f5259; max-width: 420px; }
+  .btn{
+    font: bold 14px Arial, Helvetica, sans-serif;
+    background: #8a5f22; color: #ffffff;
+    border: 1px solid #8a5f22; border-radius: 6px;
+    padding: 10px 16px; cursor: pointer;
   }
-  .brand{
-    display:flex; align-items:center; gap:12px;
+  .btn:hover{ background: #73501c; }
+  .btn.small{
+    background: #ffffff; color: #8a5f22;
+    font-size: 12.5px; padding: 5px 11px;
   }
-  .brand-mark{
-    width:38px; height:38px; border-radius:50%;
-    background: radial-gradient(circle at 32% 28%, var(--gold-bright), var(--gold) 60%, #7a5a24 100%);
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
-    flex: none;
-  }
-  .brand h1{
-    font-family: var(--serif);
-    font-size: 26px;
-    letter-spacing: 0.02em;
-    margin: 0;
-    font-weight: 700;
-  }
-  .brand .sub{
-    font-size: 11.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    margin-top: 2px;
-  }
-  .masthead-meta{
-    text-align: right;
-    font-size: 12.5px;
-    color: var(--text-dim);
-  }
-  .masthead-meta .updated{
-    font-family: var(--mono);
-    color: var(--text);
-  }
-  .live-dot{
-    display:inline-block; width:7px; height:7px; border-radius:50%;
-    background: var(--green); margin-right:6px;
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--green) 20%, transparent);
-  }
-
-  /* ---------- Price hero ---------- */
-  .hero{
-    background: linear-gradient(180deg, var(--bg-panel-2), var(--bg-panel));
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px 26px;
-    margin-bottom: 22px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 20px;
-    align-items: center;
-  }
-  .hero-price .label{
-    font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--text-faint); margin-bottom: 6px;
-  }
-  .hero-price .value{
-    font-family: var(--mono);
-    font-size: 44px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--text);
-  }
-  .hero-price .unit{
-    font-size: 15px; color: var(--text-dim); font-weight: 400; margin-left: 6px;
-  }
-  .hero-price .deltas{
-    margin-top: 8px;
-    display:flex; gap: 16px; flex-wrap: wrap;
-    font-family: var(--mono);
-    font-size: 13.5px;
-  }
-  .delta{ display:flex; align-items:center; gap:5px; }
-  .delta .dlabel{ color: var(--text-faint); font-family: var(--sans); font-size: 11.5px; }
-  .up{ color: var(--green); }
-  .down{ color: var(--red); }
-  .flat{ color: var(--text-dim); }
-
-  .hero-chart{ width: 240px; }
-  .hero-chart svg{ display:block; width:100%; height:auto; }
-  .hero-chart .range-label{
-    display:flex; justify-content: space-between;
-    font-family: var(--mono); font-size: 10.5px; color: var(--text-faint); margin-top: 4px;
-  }
-
-  /* ---------- Stat strip ---------- */
-  .stat-strip{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 28px;
-  }
-  .stat{
-    background: var(--bg-panel);
-    padding: 14px 16px;
-  }
-  .stat .slabel{
-    font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--text-faint); margin-bottom: 4px;
-  }
-  .stat .sval{
-    font-family: var(--mono); font-size: 16px; font-weight: 600;
-  }
-
-  /* ---------- Section heading ---------- */
-  .section-head{
-    display:flex; align-items:baseline; gap: 10px;
-    margin: 34px 0 14px;
-  }
-  .section-head h2{
-    font-family: var(--serif);
-    font-size: 19px;
-    margin: 0;
-    white-space: nowrap;
-  }
-  .section-head .rule{
-    flex:1; height:1px; background: var(--border);
-  }
-  .section-head .tag{
-    font-size: 11px; color: var(--text-faint); letter-spacing: 0.08em; text-transform: uppercase;
-  }
-
-  /* ---------- Briefing bullets ---------- */
-  .briefing{
-    background: var(--bg-panel);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--gold);
+  .btn.small:hover{ background: #f7f1e6; }
+  .btn:focus-visible{ outline: 2px solid #1c1d1f; outline-offset: 2px; }
+  .status{ font-size: 13px; color: #1f7a4d; min-height: 1.2em; margin: 0 0 12px; }
+  .status.fail{ color: #b2402f; }
+  .sheet{
+    background: #ffffff;
+    border: 1px solid #ddd7c8;
     border-radius: 8px;
-    padding: 6px 22px;
+    padding: 28px 28px 32px;
   }
-  .brief-item{
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border);
-    display:flex;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  .brief-item:last-child{ border-bottom: none; }
-  .brief-item .bullet-mark{
-    flex: none;
-    color: var(--gold);
-    font-size: 14.5px;
-    line-height: 1.5;
-    padding-top: 1px;
-  }
-  .brief-item p{
-    margin: 0;
-    font-size: 14.5px;
-    color: var(--text);
-  }
-  .brief-item p b, .brief-item p strong{ color: var(--text); }
-
-  /* ---------- Outlook ---------- */
-  .outlook{
-    font-family: var(--serif);
-    font-size: 16px;
-    line-height: 1.65;
-    color: var(--text);
-    background: var(--bg-panel-2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 18px 22px;
-    font-style: italic;
-  }
-  .outlook .bias{
-    font-family: var(--sans);
-    font-style: normal;
-    display:inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 3px 9px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-  }
-  .bias.bullish{ background: color-mix(in srgb, var(--green) 18%, transparent); color: var(--green); }
-  .bias.bearish{ background: color-mix(in srgb, var(--red) 18%, transparent); color: var(--red); }
-  .bias.neutral{ background: color-mix(in srgb, var(--gold) 22%, transparent); color: var(--gold-bright); }
-
-  /* ---------- Levels table ---------- */
-  .levels{
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13.5px;
-  }
-  .levels th{
-    text-align: left;
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    font-weight: 600;
-    padding: 8px 12px;
-    border-bottom: 1px solid var(--border);
-  }
-  .levels td{
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--border);
-    font-family: var(--mono);
-  }
-  .levels tr:last-child td{ border-bottom: none; }
-  .levels td.tag{
-    font-family: var(--sans);
-    font-size: 12.5px;
-  }
-
-  /* ---------- Sources / footer ---------- */
-  .sources{
-    display:flex; flex-wrap:wrap; gap: 8px 18px;
-    font-size: 12.5px; color: var(--text-dim);
-  }
-  .sources a{ color: var(--text-dim); text-decoration: none; border-bottom: 1px dotted var(--text-faint); }
-  .sources a:hover{ color: var(--gold); border-color: var(--gold); }
-
-  footer{
-    margin-top: 48px;
-    padding-top: 18px;
-    border-top: 1px solid var(--border);
-    font-size: 11.5px;
-    color: var(--text-faint);
-    display:flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
+  .section-tools{ text-align: right; margin-top: 10px; }
   .error-banner{
-    display:none;
-    background: color-mix(in srgb, var(--red) 15%, transparent);
-    border: 1px solid var(--red);
-    color: var(--text);
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 13px;
-    margin-bottom: 20px;
+    display: none;
+    background: #f6e3e0; border: 1px solid #b2402f; color: #1c1d1f;
+    padding: 10px 16px; border-radius: 8px; font-size: 13px; margin-bottom: 16px;
+  }
+  @media (max-width: 560px){
+    .sheet{ padding: 18px 16px 22px; }
+  }
+  @media print{
+    body{ background: #ffffff; }
+    .toolbar, .section-tools, .status{ display: none; }
+    .sheet{ border: none; padding: 0; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="page">
 
-  <header class="masthead">
-    <div class="brand">
-      <div class="brand-mark" aria-hidden="true"></div>
-      <div>
-        <h1>Gold Digest</h1>
-        <div class="sub">XAU/USD &middot; Weekly Briefing</div>
-      </div>
-    </div>
-    <div class="masthead-meta">
-      <div><span class="live-dot" aria-hidden="true"></span><span class="updated" id="updated-at">—</span></div>
-      <div>Refreshed daily &middot; automated briefing</div>
-    </div>
-  </header>
+  <div class="toolbar">
+    <p>Both languages are included. Copy the whole briefing or a single section, then paste it into your email.<br><span lang="el">Περιλαμβάνονται και οι δύο γλώσσες. Αντιγράψτε ολόκληρη την ενημέρωση ή μία ενότητα και επικολλήστε τη στο email σας.</span></p>
+    <button type="button" class="btn" id="copy-all">Copy for email / Αντιγραφή για email</button>
+  </div>
+  <div class="status" id="copy-status" role="status" aria-live="polite"></div>
 
   <div class="error-banner" id="error-banner">
-    Data feed unavailable — showing the last cached briefing below.
+    Data feed unavailable. Η ροή δεδομένων δεν είναι διαθέσιμη.
   </div>
 
-  <!-- ---------- Price hero ---------- -->
-  <section class="hero">
-    <div class="hero-price">
-      <div class="label">Spot Price</div>
-      <div class="value"><span id="spot-price">—</span><span class="unit">USD / oz</span></div>
-      <div class="deltas">
-        <span class="delta"><span class="dlabel">1D</span><span id="day-change">—</span></span>
-        <span class="delta"><span class="dlabel">1W</span><span id="week-change">—</span></span>
-        <span class="delta"><span class="dlabel">YTD</span><span id="ytd-change">—</span></span>
-      </div>
-    </div>
-    <div class="hero-chart">
-      <svg id="spark" viewBox="0 0 240 70" preserveAspectRatio="none"></svg>
-      <div class="range-label"><span id="range-start">—</span><span id="range-end">—</span></div>
-    </div>
-  </section>
-
-  <!-- ---------- Stat strip ---------- -->
-  <div class="stat-strip">
-    <div class="stat">
-      <div class="slabel">Week High</div>
-      <div class="sval" id="week-high">—</div>
-    </div>
-    <div class="stat">
-      <div class="slabel">Week Low</div>
-      <div class="sval" id="week-low">—</div>
-    </div>
-    <div class="stat">
-      <div class="slabel">Support</div>
-      <div class="sval" id="support-level">—</div>
-    </div>
-    <div class="stat">
-      <div class="slabel">Resistance</div>
-      <div class="sval" id="resistance-level">—</div>
-    </div>
-  </div>
-
-  <!-- ---------- Weekly briefing ---------- -->
-  <div class="section-head">
-    <h2>This Week in Gold</h2>
-    <div class="rule"></div>
-    <div class="tag">Key drivers</div>
-  </div>
-  <div class="briefing" id="briefing-list">
-    <!-- populated by script -->
-  </div>
-
-  <!-- ---------- Outlook ---------- -->
-  <div class="section-head">
-    <h2>Desk Outlook</h2>
-    <div class="rule"></div>
-  </div>
-  <div class="outlook">
-    <div class="bias neutral" id="bias-tag">Neutral</div>
-    <div id="outlook-text">Outlook unavailable.</div>
-  </div>
-
-  <!-- ---------- Levels ---------- -->
-  <div class="section-head">
-    <h2>Levels to Watch</h2>
-    <div class="rule"></div>
-  </div>
-  <table class="levels" id="levels-table">
-    <thead>
-      <tr><th>Level</th><th>Price</th><th>Note</th></tr>
-    </thead>
-    <tbody id="levels-body">
-    </tbody>
-  </table>
-
-  <!-- ---------- Sources ---------- -->
-  <div class="section-head">
-    <h2>Sources</h2>
-    <div class="rule"></div>
-  </div>
-  <div class="sources" id="sources-list">—</div>
-
-  <footer>
-    <span>Gold Digest &middot; for informational purposes only, not investment advice.</span>
-    <span id="footer-updated">—</span>
-  </footer>
+  <main class="sheet" id="digest">
+    <noscript>This briefing needs JavaScript to render. / Η ενημέρωση απαιτεί JavaScript.</noscript>
+  </main>
 
 </div>
 
@@ -425,6 +87,7 @@
   DAILY DATA BLOCK — edited by the automated Claude routine.
   Replace ONLY the JSON contents between the markers below.
   Everything else in this file (HTML/CSS/JS) stays untouched.
+  Fill both English and Greek (_el) fields.
   Schema documented in README.md.
   ============================================================
 -->
@@ -588,153 +251,354 @@
 
 <script>
 (function(){
-  function fmtUSD(n, opts){
-    opts = opts || {};
+  // Email-safe palette and fonts, written inline into every element.
+  var C = {
+    text: '#1c1d1f', dim: '#4f5259', faint: '#7a7c83', gold: '#8a5f22',
+    green: '#1f7a4d', red: '#b2402f', border: '#ddd7c8', panel: '#faf8f3'
+  };
+  var SANS = "Arial, Helvetica, sans-serif";
+  var SERIF = "Georgia, 'Times New Roman', serif";
+  var MONO = "Consolas, 'Courier New', monospace";
+
+  function esc(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function isNum(n){ return typeof n === 'number' && isFinite(n); }
+  function money(n, cur){
+    if (!isNum(n)) return '—';
     return new Intl.NumberFormat('en-US', {
-      style: 'currency', currency: 'USD',
-      minimumFractionDigits: opts.min != null ? opts.min : 2,
-      maximumFractionDigits: opts.max != null ? opts.max : 2
+      style: 'currency', currency: cur || 'USD',
+      minimumFractionDigits: 2, maximumFractionDigits: 2
     }).format(n);
   }
-  function fmtPct(n){
-    var s = (n >= 0 ? '+' : '') + n.toFixed(2) + '%';
-    return s;
-  }
-  function fmtSigned(n){
-    return (n >= 0 ? '+' : '') + fmtUSD(Math.abs(n) * (n<0?-1:1));
-  }
-  function deltaClass(n){
-    if (n > 0) return 'up';
-    if (n < 0) return 'down';
-    return 'flat';
-  }
-  function arrow(n){
-    if (n > 0) return '▲ ';
-    if (n < 0) return '▼ ';
-    return '– ';
-  }
+  function signedMoney(n, cur){ return (n >= 0 ? '+' : '-') + money(Math.abs(n), cur); }
+  function pct(n){ return isNum(n) ? (n >= 0 ? '+' : '') + n.toFixed(2) + '%' : '—'; }
+  function dirColor(n){ return n > 0 ? C.green : (n < 0 ? C.red : C.dim); }
+  function arrow(n){ return n > 0 ? '▲ ' : (n < 0 ? '▼ ' : ''); }
+  function safeUrl(u){ return /^https?:\/\//i.test(u || '') ? u : null; }
 
-  function render(data){
-    document.getElementById('spot-price').textContent = fmtUSD(data.spot_price);
-
-    var dayEl = document.getElementById('day-change');
-    dayEl.textContent = arrow(data.day_change) + fmtSigned(data.day_change) + ' (' + fmtPct(data.day_change_pct) + ')';
-    dayEl.className = deltaClass(data.day_change);
-
-    var weekEl = document.getElementById('week-change');
-    weekEl.textContent = arrow(data.week_change) + fmtSigned(data.week_change) + ' (' + fmtPct(data.week_change_pct) + ')';
-    weekEl.className = deltaClass(data.week_change);
-
-    var ytdEl = document.getElementById('ytd-change');
-    ytdEl.textContent = fmtPct(data.ytd_change_pct) + ' YTD';
-    ytdEl.className = deltaClass(data.ytd_change_pct);
-
-    document.getElementById('week-high').textContent = fmtUSD(data.week_high);
-    document.getElementById('week-low').textContent = fmtUSD(data.week_low);
-
-    var levels = data.levels || [];
-    var support = levels.filter(function(l){ return /support/i.test(l.level); })[0];
-    var resistance = levels.filter(function(l){ return /resistance/i.test(l.level); })[0];
-    document.getElementById('support-level').textContent = support ? fmtUSD(support.price) : '—';
-    document.getElementById('resistance-level').textContent = resistance ? fmtUSD(resistance.price) : '—';
-
-    // Sparkline
-    var pts = data.sparkline || [];
-    var svg = document.getElementById('spark');
-    if (pts.length > 1){
-      var w = 240, h = 70, pad = 6;
-      var min = Math.min.apply(null, pts), max = Math.max.apply(null, pts);
-      var range = (max - min) || 1;
-      var stepX = (w - pad*2) / (pts.length - 1);
-      var coords = pts.map(function(v, i){
-        var x = pad + i * stepX;
-        var y = h - pad - ((v - min) / range) * (h - pad*2);
-        return [x, y];
-      });
-      var pathD = coords.map(function(c, i){ return (i===0?'M':'L') + c[0].toFixed(1) + ',' + c[1].toFixed(1); }).join(' ');
-      var areaD = pathD + ' L' + coords[coords.length-1][0].toFixed(1) + ',' + h + ' L' + coords[0][0].toFixed(1) + ',' + h + ' Z';
-      var trendUp = pts[pts.length-1] >= pts[0];
-      var lineColor = trendUp ? 'var(--green)' : 'var(--red)';
-      svg.innerHTML =
-        '<defs><linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">' +
-        '<stop offset="0%" stop-color="' + lineColor + '" stop-opacity="0.35"/>' +
-        '<stop offset="100%" stop-color="' + lineColor + '" stop-opacity="0"/>' +
-        '</linearGradient></defs>' +
-        '<path d="' + areaD + '" fill="url(#sparkFill)" stroke="none"></path>' +
-        '<path d="' + pathD + '" fill="none" stroke="' + lineColor + '" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round"></path>' +
-        '<circle cx="' + coords[coords.length-1][0].toFixed(1) + '" cy="' + coords[coords.length-1][1].toFixed(1) + '" r="2.5" fill="' + lineColor + '"></circle>';
+  function stamp(iso){
+    var d = new Date(iso);
+    if (!iso || isNaN(d.getTime())) return { en: '—', el: '—' };
+    var cet = d.toLocaleTimeString('en-GB', {
+      timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit', hour12: false, timeZoneName: 'short'
+    });
+    function fmt(loc){
+      var date = d.toLocaleDateString(loc, { timeZone: 'UTC', day: 'numeric', month: 'short', year: 'numeric' });
+      var utc = d.toLocaleTimeString('en-GB', { timeZone: 'UTC', hour: '2-digit', minute: '2-digit', hour12: false });
+      return date + ', ' + utc + ' UTC (' + cet + ')';
     }
-    var labels = data.sparkline_labels || {};
-    document.getElementById('range-start').textContent = labels.start || '';
-    document.getElementById('range-end').textContent = labels.end || '';
+    return { en: fmt('en-GB'), el: fmt('el-GR') };
+  }
 
-    // Briefing bullets (flat list, no categories — reads cleanly when copy-pasted into an email)
-    var briefingEl = document.getElementById('briefing-list');
-    briefingEl.innerHTML = '';
-    (data.bullets || []).slice(0, 5).forEach(function(b){
-      var row = document.createElement('div');
-      row.className = 'brief-item';
-      var mark = document.createElement('span');
-      mark.className = 'bullet-mark';
-      mark.textContent = '•';
-      mark.setAttribute('aria-hidden', 'true');
-      var p = document.createElement('p');
-      p.textContent = typeof b === 'string' ? b : (b.text || '');
-      row.appendChild(mark);
-      row.appendChild(p);
-      briefingEl.appendChild(row);
+  // ---------- Building blocks (inline-styled HTML) ----------
+  function heading(en, el){
+    return '<h2 style="margin:30px 0 12px;padding:0 0 6px;border-bottom:2px solid ' + C.gold + ';' +
+      'font-family:' + SERIF + ';font-size:20px;line-height:1.3;font-weight:bold;color:' + C.text + ';">' +
+      esc(en) + ' <span lang="el" style="font-weight:normal;color:' + C.dim + ';">/ ' + esc(el) + '</span></h2>';
+  }
+  function pEn(html, extra){
+    return '<p style="margin:0;font-family:' + SANS + ';font-size:15px;line-height:1.55;color:' + C.text + ';' + (extra || '') + '">' + html + '</p>';
+  }
+  function pEl(html, extra){
+    return '<p lang="el" style="margin:6px 0 0;font-family:' + SANS + ';font-size:15px;line-height:1.55;color:' + C.dim + ';' + (extra || '') + '">' + html + '</p>';
+  }
+  function small(html, extra){
+    return '<div style="font-family:' + SANS + ';font-size:12.5px;line-height:1.5;color:' + C.faint + ';' + (extra || '') + '">' + html + '</div>';
+  }
+  function labelled(label, text){ return label ? '<strong>' + esc(label) + ':</strong> ' + esc(text) : esc(text); }
+
+  // ---------- Sparkline as a PNG (images paste into email; SVG does not) ----------
+  function chartDataUrl(pts){
+    if (!pts || pts.length < 2) return null;
+    var cv = document.createElement('canvas');
+    if (!cv.getContext) return null;
+    var W = 640, H = 160, pad = 12;
+    cv.width = W; cv.height = H;
+    var g = cv.getContext('2d');
+    g.fillStyle = '#ffffff'; g.fillRect(0, 0, W, H);
+    var min = Math.min.apply(null, pts), max = Math.max.apply(null, pts);
+    var range = (max - min) || 1, step = (W - pad * 2) / (pts.length - 1);
+    var xy = pts.map(function(v, i){ return [pad + i * step, H - pad - ((v - min) / range) * (H - pad * 2)]; });
+    var up = pts[pts.length - 1] >= pts[0];
+    var col = up ? C.green : C.red;
+    function trace(){ xy.forEach(function(p, i){ if (i) g.lineTo(p[0], p[1]); else g.moveTo(p[0], p[1]); }); }
+    var grad = g.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, up ? 'rgba(31,122,77,0.22)' : 'rgba(178,64,47,0.22)');
+    grad.addColorStop(1, 'rgba(255,255,255,0)');
+    g.beginPath(); trace();
+    g.lineTo(xy[xy.length - 1][0], H); g.lineTo(xy[0][0], H); g.closePath();
+    g.fillStyle = grad; g.fill();
+    g.beginPath(); trace();
+    g.strokeStyle = col; g.lineWidth = 3.5; g.lineJoin = 'round'; g.lineCap = 'round'; g.stroke();
+    var last = xy[xy.length - 1];
+    g.beginPath(); g.arc(last[0], last[1], 5.5, 0, Math.PI * 2); g.fillStyle = col; g.fill();
+    try { return cv.toDataURL('image/png'); } catch (e) { return null; }
+  }
+
+  // ---------- Sections: each returns { html, text, copy } ----------
+  function secHeader(d){
+    var t = stamp(d.updated_at);
+    var html =
+      '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>' +
+      '<td style="padding:0 0 12px;border-bottom:3px solid ' + C.gold + ';">' +
+      '<div style="font-family:' + SERIF + ';font-size:28px;font-weight:bold;line-height:1.2;color:' + C.text + ';">Gold Digest</div>' +
+      '<div style="font-family:' + SANS + ';font-size:13px;color:' + C.dim + ';margin-top:3px;">XAU/USD weekly briefing <span lang="el">/ Εβδομαδιαία ενημέρωση για τον χρυσό</span></div>' +
+      small('Updated ' + esc(t.en) + ' <span lang="el">/ Ενημέρωση ' + esc(t.el) + '</span>', 'margin-top:6px;') +
+      '</td></tr></table>';
+    var text = 'GOLD DIGEST: XAU/USD weekly briefing / Εβδομαδιαία ενημέρωση για τον χρυσό\n' +
+      'Updated ' + t.en + ' / Ενημέρωση ' + t.el;
+    return { html: html, text: text };
+  }
+
+  function pickLevel(levels, re, spot, below){
+    var m = levels.filter(function(l){ return re.test(l.level || '') && isNum(l.price); });
+    if (!m.length) return null;
+    if (isNum(spot)){
+      var side = m.filter(function(l){ return below ? l.price <= spot : l.price >= spot; });
+      if (side.length){
+        side.sort(function(a, b){ return below ? b.price - a.price : a.price - b.price; });
+        return side[0];
+      }
+    }
+    return m[0];
+  }
+
+  function secPrice(d){
+    var cur = d.currency || 'USD', unit = d.unit || 'oz';
+    var levels = d.levels || [];
+    var sup = pickLevel(levels, /support/i, d.spot_price, true);
+    var res = pickLevel(levels, /resistance/i, d.spot_price, false);
+    function delta(abs, p){
+      if (!isNum(abs)) return '—';
+      return '<span style="color:' + dirColor(abs) + ';">' + arrow(abs) + signedMoney(abs, cur) + (isNum(p) ? ' (' + pct(p) + ')' : '') + '</span>';
+    }
+    var rows = [
+      ['Day change', 'Μεταβολή ημέρας', delta(d.day_change, d.day_change_pct)],
+      ['Week change', 'Μεταβολή εβδομάδας', delta(d.week_change, d.week_change_pct)],
+      ['Year to date', 'Από την αρχή του έτους', isNum(d.ytd_change_pct) ? '<span style="color:' + dirColor(d.ytd_change_pct) + ';">' + pct(d.ytd_change_pct) + '</span>' : '—'],
+      ['Week high', 'Υψηλό εβδομάδας', money(d.week_high, cur)],
+      ['Week low', 'Χαμηλό εβδομάδας', money(d.week_low, cur)],
+      ['Nearest support', 'Κοντινότερη στήριξη', sup ? money(sup.price, cur) : '—'],
+      ['Nearest resistance', 'Κοντινότερη αντίσταση', res ? money(res.price, cur) : '—']
+    ];
+    var html = heading('Price', 'Τιμή') +
+      small('Spot price <span lang="el">/ Τιμή spot</span>') +
+      '<div style="font-family:' + MONO + ';font-size:36px;font-weight:bold;line-height:1.2;color:' + C.text + ';margin-top:2px;">' +
+      money(d.spot_price, cur) + ' <span style="font-family:' + SANS + ';font-size:15px;font-weight:normal;color:' + C.dim + ';">' + esc(cur) + ' / ' + esc(unit) + '</span></div>';
+    var text = 'PRICE / ΤΙΜΗ\nSpot / Τιμή spot: ' + money(d.spot_price, cur) + ' ' + cur + '/' + unit;
+    if (isNum(d.spot_price_eur)){
+      html += '<div style="font-family:' + MONO + ';font-size:20px;font-weight:bold;line-height:1.3;color:' + C.text + ';margin-top:2px;">' +
+        money(d.spot_price_eur, 'EUR') + ' <span style="font-family:' + SANS + ';font-size:14px;font-weight:normal;color:' + C.dim + ';">EUR / ' + esc(unit) + '</span></div>';
+      text += '\nSpot in euros / Τιμή σε ευρώ: ' + money(d.spot_price_eur, 'EUR') + ' EUR/' + unit;
+    }
+
+    var pts = (d.sparkline || []).filter(isNum);
+    var url = chartDataUrl(pts);
+    var lab = d.sparkline_labels || {};
+    if (url){
+      html += '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:14px;width:100%;max-width:320px;"><tr><td colspan="2" style="padding:0;">' +
+        '<img src="' + url + '" width="320" alt="Recent daily prices / Πρόσφατες ημερήσιες τιμές" style="display:block;width:100%;max-width:320px;height:auto;border:0;">' +
+        '</td></tr><tr>' +
+        '<td style="padding:3px 0 0;font-family:' + SANS + ';font-size:12px;color:' + C.faint + ';text-align:left;">' + esc(lab.start || '') + '</td>' +
+        '<td style="padding:3px 0 0;font-family:' + SANS + ';font-size:12px;color:' + C.faint + ';text-align:right;">' + esc(lab.end || '') + '</td>' +
+        '</tr></table>';
+    }
+    if (pts.length){
+      var series = pts.map(function(v){ return money(v, cur).replace(/^[^0-9]+/, ''); }).join(' · ');
+      html += small('Recent daily prices <span lang="el">/ Πρόσφατες ημερήσιες τιμές</span> (' + esc(cur) + '): ' + esc(series), 'margin-top:6px;');
+      text += '\nRecent daily prices / Πρόσφατες ημερήσιες τιμές (' + cur + '): ' + series;
+    }
+
+    html += '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:16px;">';
+    rows.forEach(function(r){
+      html += '<tr>' +
+        '<td style="padding:8px 12px 8px 0;border-bottom:1px solid ' + C.border + ';font-family:' + SANS + ';font-size:14px;color:' + C.text + ';vertical-align:top;">' +
+          esc(r[0]) + ' <span lang="el" style="color:' + C.dim + ';">/ ' + esc(r[1]) + '</span></td>' +
+        '<td style="padding:8px 0;border-bottom:1px solid ' + C.border + ';font-family:' + MONO + ';font-size:14px;font-weight:bold;color:' + C.text + ';text-align:right;white-space:nowrap;vertical-align:top;">' + r[2] + '</td>' +
+        '</tr>';
+      text += '\n' + r[0] + ' / ' + r[1] + ': ' + r[2].replace(/<[^>]+>/g, '');
     });
+    html += '</table>';
+    return { html: html, text: text, copy: true };
+  }
 
-    // Outlook
-    var outlook = data.outlook || {};
-    var biasTag = document.getElementById('bias-tag');
-    var bias = (outlook.bias || 'neutral').toLowerCase();
-    biasTag.textContent = bias.charAt(0).toUpperCase() + bias.slice(1);
-    biasTag.className = 'bias ' + (['bullish','bearish','neutral'].indexOf(bias) >= 0 ? bias : 'neutral');
-    document.getElementById('outlook-text').textContent = outlook.text || 'Outlook unavailable.';
-
-    // Levels table
-    var tbody = document.getElementById('levels-body');
-    tbody.innerHTML = '';
-    (data.levels || []).forEach(function(l){
-      var tr = document.createElement('tr');
-      var tdLevel = document.createElement('td');
-      tdLevel.className = 'tag';
-      tdLevel.textContent = l.level;
-      var tdPrice = document.createElement('td');
-      tdPrice.textContent = fmtUSD(l.price);
-      var tdNote = document.createElement('td');
-      tdNote.className = 'tag';
-      tdNote.textContent = l.note || '';
-      tr.appendChild(tdLevel); tr.appendChild(tdPrice); tr.appendChild(tdNote);
-      tbody.appendChild(tr);
+  function secBullets(d){
+    var items = (d.bullets || []).slice(0, 5).map(function(b){ return typeof b === 'string' ? { text: b } : (b || {}); });
+    if (!items.length) return null;
+    var html = heading('This Week in Gold', 'Η εβδομάδα στον χρυσό') + '<ul style="margin:0;padding:0 0 0 22px;">';
+    var text = 'THIS WEEK IN GOLD / Η ΕΒΔΟΜΑΔΑ ΣΤΟΝ ΧΡΥΣΟ';
+    items.forEach(function(b){
+      html += '<li style="margin:0 0 14px;padding:0;font-family:' + SANS + ';font-size:15px;line-height:1.55;color:' + C.text + ';">' +
+        pEn(labelled(b.category, b.text)) +
+        (b.text_el ? pEl(labelled(b.category_el || b.category, b.text_el)) : '') +
+        '</li>';
+      text += '\n\n- ' + (b.category ? b.category + ': ' : '') + (b.text || '');
+      if (b.text_el) text += '\n  ' + ((b.category_el || b.category) ? (b.category_el || b.category) + ': ' : '') + b.text_el;
     });
+    html += '</ul>';
+    return { html: html, text: text, copy: true };
+  }
 
-    // Sources
-    var sourcesEl = document.getElementById('sources-list');
-    sourcesEl.innerHTML = '';
-    (data.sources || []).forEach(function(s, i){
-      var a = document.createElement('a');
-      a.href = s.url; a.textContent = s.name; a.target = '_blank'; a.rel = 'noopener noreferrer';
-      sourcesEl.appendChild(a);
+  var BIAS = {
+    bullish: { en: 'Bullish', el: 'Ανοδική', col: C.green, bg: '#e3f1e9' },
+    bearish: { en: 'Bearish', el: 'Πτωτική', col: C.red, bg: '#f6e3e0' },
+    neutral: { en: 'Neutral', el: 'Ουδέτερη', col: C.gold, bg: '#f3ead9' }
+  };
+  function secOutlook(d){
+    var o = d.outlook || {};
+    if (!o.text && !o.text_el) return null;
+    var b = BIAS[(o.bias || 'neutral').toLowerCase()] || BIAS.neutral;
+    var html = heading('Desk Outlook', 'Προοπτικές') +
+      '<div style="margin:0 0 10px;"><span style="display:inline-block;padding:3px 10px;border-radius:12px;background:' + b.bg + ';color:' + b.col + ';font-family:' + SANS + ';font-size:13px;font-weight:bold;">' +
+      'Bias: ' + b.en + ' <span lang="el">/ Τάση: ' + b.el + '</span></span></div>' +
+      (o.text ? pEn(esc(o.text)) : '') +
+      (o.text_el ? pEl(esc(o.text_el), 'margin-top:10px;') : '');
+    var text = 'DESK OUTLOOK / ΠΡΟΟΠΤΙΚΕΣ\nBias: ' + b.en + ' / Τάση: ' + b.el +
+      (o.text ? '\n\n' + o.text : '') + (o.text_el ? '\n\n' + o.text_el : '');
+    return { html: html, text: text, copy: true };
+  }
+
+  function levelEl(l){
+    if (l.level_el) return l.level_el;
+    return String(l.level || '').replace(/^support/i, 'Στήριξη').replace(/^resistance/i, 'Αντίσταση');
+  }
+  function secLevels(d){
+    var levels = d.levels || [];
+    if (!levels.length) return null;
+    var cur = d.currency || 'USD';
+    var r = d.levels_rationale || {};
+    var html = heading('Levels to Watch', 'Επίπεδα προς παρακολούθηση');
+    var text = 'LEVELS TO WATCH / ΕΠΙΠΕΔΑ ΠΡΟΣ ΠΑΡΑΚΟΛΟΥΘΗΣΗ';
+    if (r.en || r.el){
+      html += '<div style="margin:0 0 14px;">' + (r.en ? pEn(esc(r.en)) : '') + (r.el ? pEl(esc(r.el)) : '') + '</div>';
+      text += (r.en ? '\n' + r.en : '') + (r.el ? '\n' + r.el : '');
+    }
+    var th = 'padding:6px 12px 6px 0;border-bottom:2px solid ' + C.border + ';font-family:' + SANS + ';font-size:12.5px;font-weight:bold;color:' + C.dim + ';text-align:left;vertical-align:bottom;';
+    var td = 'padding:9px 12px 9px 0;border-bottom:1px solid ' + C.border + ';vertical-align:top;';
+    html += '<table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">' +
+      '<tr><th style="' + th + '">Level <span lang="el">/ Επίπεδο</span></th>' +
+      '<th style="' + th + '">Price <span lang="el">/ Τιμή</span></th>' +
+      '<th style="' + th + 'padding-right:0;">Note <span lang="el">/ Σχόλιο</span></th></tr>';
+    levels.forEach(function(l){
+      html += '<tr>' +
+        '<td style="' + td + 'font-family:' + SANS + ';font-size:14px;color:' + C.text + ';white-space:nowrap;">' + esc(l.level) + '<br><span lang="el" style="color:' + C.dim + ';">' + esc(levelEl(l)) + '</span></td>' +
+        '<td style="' + td + 'font-family:' + MONO + ';font-size:14px;font-weight:bold;color:' + C.text + ';white-space:nowrap;">' + money(l.price, cur) + '</td>' +
+        '<td style="' + td + 'padding-right:0;font-family:' + SANS + ';font-size:14px;line-height:1.5;color:' + C.text + ';">' + esc(l.note || '') +
+          (l.note_el ? '<br><span lang="el" style="display:inline-block;margin-top:4px;color:' + C.dim + ';">' + esc(l.note_el) + '</span>' : '') + '</td>' +
+        '</tr>';
+      text += '\n\n- ' + l.level + ' / ' + levelEl(l) + ': ' + money(l.price, cur) +
+        (l.note ? '\n  ' + l.note : '') + (l.note_el ? '\n  ' + l.note_el : '');
     });
+    html += '</table>';
+    return { html: html, text: text, copy: true };
+  }
 
-    // Timestamps
-    var updated = data.updated_at ? new Date(data.updated_at) : null;
-    var updatedStr = updated ? updated.toLocaleString('en-US', {
-      dateStyle: 'medium', timeStyle: 'short'
-    }) + ' UTC' : '—';
-    document.getElementById('updated-at').textContent = 'Updated ' + updatedStr;
-    document.getElementById('footer-updated').textContent = 'Last data refresh: ' + updatedStr;
+  function secNotes(d){
+    var n = d.price_notes || {};
+    if (!n.en && !n.el) return null;
+    var html = heading('Data Notes', 'Σημειώσεις δεδομένων') +
+      (n.en ? small(esc(n.en)) : '') + (n.el ? small(esc(n.el), 'margin-top:6px;') : '').replace('<div style', '<div lang="el" style');
+    var text = 'DATA NOTES / ΣΗΜΕΙΩΣΕΙΣ ΔΕΔΟΜΕΝΩΝ' + (n.en ? '\n' + n.en : '') + (n.el ? '\n' + n.el : '');
+    return { html: html, text: text };
+  }
+
+  function secSources(d){
+    var src = (d.sources || []).filter(function(s){ return s && safeUrl(s.url); });
+    if (!src.length) return null;
+    var html = heading('Sources', 'Πηγές') + '<ul style="margin:0;padding:0 0 0 22px;">';
+    var text = 'SOURCES / ΠΗΓΕΣ';
+    src.forEach(function(s){
+      html += '<li style="margin:0 0 5px;font-family:' + SANS + ';font-size:13px;line-height:1.5;color:' + C.dim + ';">' +
+        '<a href="' + esc(s.url) + '" style="color:' + C.gold + ';text-decoration:underline;">' + esc(s.name || s.url) + '</a></li>';
+      text += '\n- ' + (s.name || s.url) + ': ' + s.url;
+    });
+    html += '</ul>';
+    return { html: html, text: text, copy: true };
+  }
+
+  function secFooter(){
+    var en = 'Gold Digest is for informational purposes only and is not investment advice.';
+    var el = 'Το Gold Digest έχει αποκλειστικά ενημερωτικό χαρακτήρα και δεν αποτελεί επενδυτική συμβουλή.';
+    var html = '<div style="margin-top:30px;padding-top:12px;border-top:1px solid ' + C.border + ';">' +
+      small(esc(en)) + small(esc(el), 'margin-top:2px;').replace('<div style', '<div lang="el" style') + '</div>';
+    return { html: html, text: en + '\n' + el };
+  }
+
+  // ---------- Clipboard ----------
+  var statusEl = document.getElementById('copy-status');
+  function setStatus(ok){
+    statusEl.className = 'status' + (ok ? '' : ' fail');
+    statusEl.textContent = ok
+      ? 'Copied. Paste it into your email. / Αντιγράφηκε. Επικολλήστε το στο email σας.'
+      : 'Copy failed. Select the text and press Ctrl+C or Cmd+C. / Η αντιγραφή απέτυχε. Επιλέξτε το κείμενο και πατήστε Ctrl+C ή Cmd+C.';
+  }
+  function wrapEmail(html){
+    return '<div style="font-family:' + SANS + ';color:' + C.text + ';background:#ffffff;max-width:680px;">' + html + '</div>';
+  }
+  function copyViaSelection(html){
+    var box = document.createElement('div');
+    box.innerHTML = html;
+    box.style.position = 'fixed'; box.style.left = '-10000px'; box.style.top = '0';
+    document.body.appendChild(box);
+    var sel = window.getSelection(), range = document.createRange();
+    range.selectNodeContents(box);
+    sel.removeAllRanges(); sel.addRange(range);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    sel.removeAllRanges();
+    document.body.removeChild(box);
+    return ok;
+  }
+  function copyRich(html, text){
+    html = wrapEmail(html);
+    if (navigator.clipboard && window.ClipboardItem && window.isSecureContext){
+      var item = new ClipboardItem({
+        'text/html': new Blob([html], { type: 'text/html' }),
+        'text/plain': new Blob([text], { type: 'text/plain' })
+      });
+      navigator.clipboard.write([item]).then(function(){ setStatus(true); }, function(){ setStatus(copyViaSelection(html)); });
+    } else {
+      setStatus(copyViaSelection(html));
+    }
+  }
+
+  // ---------- Render ----------
+  function render(d){
+    var sections = [secHeader(d), secPrice(d), secBullets(d), secOutlook(d), secLevels(d), secNotes(d), secSources(d), secFooter()]
+      .filter(Boolean);
+    var root = document.getElementById('digest');
+    root.innerHTML = '';
+    sections.forEach(function(s){
+      var wrap = document.createElement('section');
+      var body = document.createElement('div');
+      body.innerHTML = s.html;
+      wrap.appendChild(body);
+      if (s.copy){
+        var tools = document.createElement('div');
+        tools.className = 'section-tools';
+        var btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'btn small';
+        btn.textContent = 'Copy section / Αντιγραφή ενότητας';
+        btn.addEventListener('click', function(){ copyRich(s.html, s.text); });
+        tools.appendChild(btn);
+        wrap.appendChild(tools);
+      }
+      root.appendChild(wrap);
+    });
+    var allHtml = sections.map(function(s){ return s.html; }).join('');
+    var allText = sections.map(function(s){ return s.text; }).join('\n\n');
+    document.getElementById('copy-all').addEventListener('click', function(){ copyRich(allHtml, allText); });
   }
 
   try {
-    var raw = document.getElementById('digest-data').textContent;
-    var data = JSON.parse(raw);
+    var data = JSON.parse(document.getElementById('digest-data').textContent);
     render(data);
   } catch (e) {
     document.getElementById('error-banner').style.display = 'block';
-    console.error('Gold Digest: failed to parse data block', e);
+    console.error('Gold Digest: failed to parse or render data block', e);
   }
 })();
 </script>
